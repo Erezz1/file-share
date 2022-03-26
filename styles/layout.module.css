@@ -1,0 +1,22 @@
+.layout__container {
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #EEEEEE;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.layout__wrapper {
+    padding: 0;
+}
+
+@media ( min-width: 768px ) {
+    .layout__wrapper {
+        padding: 0 1rem;
+    }
+
+    .layout__container {
+        justify-content: space-between;
+    }
+}

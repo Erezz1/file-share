@@ -1,0 +1,18 @@
+.header__container {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.header__title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-left: 0.75rem;
+}
+
+.header__title_span {
+    font-weight: 100;
+}
