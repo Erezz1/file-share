@@ -6,11 +6,10 @@ import { AiOutlineFileText } from 'react-icons/ai';
 
 import Layout from '../../layout';
 import { getFile, getLinksFiles } from '../../client/getFiles';
+import { SERVER_URL } from '../../utilities/url';
 
 import downloadIcon from '../../public/assets/download_icon.svg';
 import styles from '../../styles/file.module.css';
-
-const SERVER_URL = 'http://localhost:8080';
 
 const File = ({ file }) => {
 

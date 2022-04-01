@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://localhost:8080';
+import { SERVER_URL } from '../utilities/url';
 
 // Obtiene el nombre de todos los archivos en el servidor
 export const getLinksFiles = async () => {

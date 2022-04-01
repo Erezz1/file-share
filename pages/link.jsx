@@ -5,10 +5,9 @@ import { GiConfirmed } from 'react-icons/gi';
 
 import AppContext from '../context/appContext';
 import Layout from '../layout';
+import { CLIENT_URL } from '../utilities/url';
 
 import styles from '../styles/link.module.css';
-
-const CLIENT_URL = 'http://localhost:3000';
 
 const Link = () => {
 

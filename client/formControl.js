@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://localhost:8080';
+import { SERVER_URL } from '../utilities/url';
 
 export const uploadFile = async ( file ) => {
 
