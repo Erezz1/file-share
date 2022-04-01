@@ -8,7 +8,7 @@ class Server {
 	constructor() {
 		this.app = express();
 
-        this.port = process.env.port;
+        this.port = process.env.PORT;
 
 		this.paths = {
             files: '/api/files',
@@ -26,12 +26,11 @@ class Server {
 
 	async connectDB() {
 		try {
-			await dbConnection;
+			await dbConnection.connect();
 			console.log('Base de datos conectada');
 
-		} catch (error) {
+		} catch ( error ) {
 			console.error(`Error al conectar a la base de datos: ${ error }`);
-			process.exit(1);
 		}
 	}
 
