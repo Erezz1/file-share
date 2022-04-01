@@ -68,7 +68,7 @@ const downloadFile = async ( req = request, res = response ) => {
 
     const filePath = path.join( `${ __dirname }/../uploads/${ name }.${ extension }` );
 
-    res.download( filePath, original_name );
+    await res.download( filePath, original_name );
 
     // Actualizar la cantidad de descargas
     if ( downloads > 1 ) {
