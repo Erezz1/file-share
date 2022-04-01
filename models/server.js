@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
 const { dbConnection } = require('../database/config');
+const { createDB } = require('../utilities/adapterDB');
 
 class Server {
 	constructor() {
@@ -27,6 +28,7 @@ class Server {
 	async connectDB() {
 		try {
 			await dbConnection.connect();
+			await createDB();
 			console.log('Base de datos conectada');
 
 		} catch ( error ) {

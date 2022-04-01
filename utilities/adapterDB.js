@@ -56,11 +56,25 @@ const getAllFiles = async () => {
     `);
 }
 
+const createDB = async () => {
+    await db(`
+        CREATE TABLE IF NOT EXISTS file (
+            id INT NOT NULL AUTO_INCREMENT,
+            name VARCHAR(255) NOT NULL,
+            password VARCHAR(255) DEFAULT '',
+            downloads TINYINT DEFAULT 1,
+            original_name VARCHAR(255) NOT NULL,
+            PRIMARY KEY (id)
+        );
+    `);
+}
+
 module.exports = {
     addFile,
     updateFile,
     getFile,
     deleteFile,
     getAllFiles,
-    discuntFile
+    discuntFile,
+    createDB
 }
