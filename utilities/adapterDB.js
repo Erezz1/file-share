@@ -10,7 +10,7 @@ const addFile = async ( path, name ) => {
     `)
 }
 
-const updateFile = async ( { downloads, password }, name ) => {
+const updateFile = async ( { downloads, password = '' }, name ) => {
     return await db(`
         UPDATE file
         SET
@@ -19,6 +19,16 @@ const updateFile = async ( { downloads, password }, name ) => {
         WHERE
             name = '${ name }'
     `)
+}
+
+const discuntFile = async ( name ) => {
+    return await db(`
+        UPDATE file
+        SET
+            downloads = downloads - 1
+        WHERE
+            name = '${ name }'
+    `);
 }
 
 const getFile = async ( name ) => {
@@ -39,9 +49,18 @@ const deleteFile = async ( name ) => {
     `)
 }
 
+const getAllFiles = async () => {
+    return await db(`
+        SELECT name
+        FROM file
+    `);
+}
+
 module.exports = {
     addFile,
     updateFile,
     getFile,
-    deleteFile
+    deleteFile,
+    getAllFiles,
+    discuntFile
 }

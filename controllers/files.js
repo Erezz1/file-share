@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { request, response } = require('express');
 
-const { addFile, updateFile, getFile, deleteFile } = require('../utilities/adapterDB');
+const { addFile, updateFile, getFile, deleteFile, getAllFiles, discuntFile } = require('../utilities/adapterDB');
 const { getExtension } = require('../utilities/getExtension');
 const { saveFileInUploads } = require('../utilities/saveFile');
 
@@ -61,7 +61,6 @@ const saveFileInDB = async ( req = request, res = response ) => {
 const downloadFile = async ( req = request, res = response ) => {
 
     const { name } = req.params;
-    const { password } = req.body;
 
     const [ file ] = await getFile( name );
     const { original_name, downloads } = file;
@@ -73,10 +72,7 @@ const downloadFile = async ( req = request, res = response ) => {
 
     // Actualizar la cantidad de descargas
     if ( downloads > 1 ) {
-        return await updateFile({
-            downloads: downloads - 1,
-            password
-        }, name );
+        return await discuntFile( name );
     }
 
     // Eliminar el archivo del servidor
@@ -110,9 +106,30 @@ const getFileData = async ( req = request, res = response ) => {
     }
 }
 
+// Obtener todos los nombres de los archivos
+const getFiles = async ( req = request, res = response ) => {
+
+    try {
+        const files = await getAllFiles();
+
+        return res.json({
+            ok: true,
+            files,
+        })
+    } catch ( error ) {
+        console.log( error );
+
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error al obtener los archivos',
+        });
+    }
+}
+
 module.exports = {
     saveFile,
     saveFileInDB,
     downloadFile,
-    getFileData
+    getFileData,
+    getFiles
 };

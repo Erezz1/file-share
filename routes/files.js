@@ -3,12 +3,11 @@ const { check } = require('express-validator');
 
 const router = Router();
 
-const { saveFile, saveFileInDB, downloadFile, getFileData } = require('../controllers/files');
+const { saveFile, saveFileInDB, downloadFile, getFileData, getFiles } = require('../controllers/files');
 
 const { validateErrors } = require('../middlewares/validateErrors');
 const { validateFileExist } = require('../middlewares/validateFileExist');
 const { validateExistFile, validateSizeFile } = require('../middlewares/validateFileUpload');
-const { validatePassword } = require('../middlewares/validatePassword');
 
 // Almacena el archivo en el servidor en la carpeta "uploads"
 router.post(
@@ -25,7 +24,7 @@ router.put(
     '/:name',
     [
         check('downloads').isNumeric(),
-        check('password').isLength({ min: 6 }),
+        check('password').isString(),
         validateErrors,
         validateFileExist
     ],
@@ -37,11 +36,11 @@ router.get(
     '/download/:name',
     [
         validateFileExist,
-        validatePassword
     ],
     downloadFile
 );
 
+// Obtener los datos del archivo
 router.get(
     '/:name',
     [
@@ -49,5 +48,11 @@ router.get(
     ],
     getFileData
 )
+
+// Obtener todos los nombres de los archivos
+router.get(
+    '/',
+    getFiles
+);
 
 module.exports = router;

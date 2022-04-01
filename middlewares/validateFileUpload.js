@@ -25,7 +25,7 @@ const validateExistFile = ( req, res, next ) => {
 const validateSizeFile = ( req, res, next ) => {
     const { file } = req.files;
 
-    if ( file.size > 100000000 ) {
+    if ( file.size > 10000000 ) {
         return res.status( 400 ).json({
             ok: false,
             message: 'El archivo es muy pesado',
