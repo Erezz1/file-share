@@ -79,7 +79,8 @@
 }
 
 .dropzone__file_text > p {
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .dropzone__file_cancel {

@@ -57,9 +57,3 @@
         line-height: 1.8rem;
     }
 }
-
-@media ( min-width: 1200px ) {
-    .main__container {
-        height: 40rem;
-    }
-}

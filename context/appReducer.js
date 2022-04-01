@@ -1,12 +1,17 @@
 import {
     SET_FILE,
-    CLEAR_FILE
+    CLEAR_FILE,
+    SET_FILE_UPLOAD,
+    SET_LINK,
+    CLEAR_LINK
 } from './types';
 
 export const initialState = {
     isLoading: false,
     alert: null,
-    file: null
+    file: null,
+    formData: null,
+    link: '',
 };
 
 export const reducerApp = ( state = initialState, action ) => {
@@ -22,7 +27,25 @@ export const reducerApp = ( state = initialState, action ) => {
             return {
                 ...state,
                 file: null
-            }
+            };
+
+        case SET_FILE_UPLOAD:
+            return {
+                ...state,
+                formData: action.payload
+            };
+
+        case SET_LINK:
+            return {
+                ...state,
+                link: action.payload
+            };
+
+        case CLEAR_LINK:
+            return {
+                ...state,
+                link: ''
+            };
 
         default:
             return state;

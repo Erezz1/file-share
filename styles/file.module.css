@@ -1,0 +1,91 @@
+.container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 3rem 0;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.file__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.file__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+    background-color: #eee;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file__details > svg {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.file__details > p {
+    max-width: 90%;
+}
+
+.file__downloads {
+    font-size: 1.2rem;
+}
+
+.file__downloads > span {
+    color: #4961D6;
+    font-weight: bold;
+}
+
+.file__password {
+    margin: 1rem 0;
+    background-color: #eee;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 90%;
+    max-width: 500px;
+    outline: none;
+}
+
+.file__password:focus {
+    border: 1px solid #4961D6;
+}
+
+.file__download {
+    margin: 1rem 0;
+    background-color: #4961D6;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    border: none;
+    text-transform: uppercase;
+    transition: all 300ms;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.file__download:hover {
+    background-color: #3A4D6B;
+}
+
+@media ( min-width: 768px ) {
+    .container {
+        border-radius: 10px;
+    }
+}

@@ -1,5 +1,6 @@
 import { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { toast } from 'react-toastify';
 import { AiOutlineCloudUpload, AiOutlineCloudDownload } from 'react-icons/ai';
 
 import AppContext from '../context/appContext';
@@ -9,18 +10,19 @@ import styles from '../styles/dropzone.module.css';
 
 const Dropzone = () => {
 
-    const { setFile, file } = useContext( AppContext )
+    const { setFile, file, setFileUpload } = useContext( AppContext )
 
     const onDropRejected = () => {
-        console.log('No se pudo subir, el son 100MB.');
+        toast.error('El limite por archivo son 100MB.');
     }
 
     const onDropAccepted = useCallback( acceptedFiles => {
         const formData = new FormData();
-        formData.append( 'archivo', acceptedFiles[0] );
+        formData.append( 'file', acceptedFiles[0] );
 
         setFile( acceptedFiles[0] );
-    }, [ setFile ]);
+        setFileUpload( formData );
+    }, [ setFile, setFileUpload ]);
 
     const maxSize = 100000000;
     const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDropAccepted, onDropRejected, maxSize });

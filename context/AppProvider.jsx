@@ -4,7 +4,10 @@ import AppContext from './appContext';
 import { reducerApp, initialState } from './appReducer';
 import {
     CLEAR_FILE,
-    SET_FILE
+    SET_FILE,
+    SET_FILE_UPLOAD,
+    SET_LINK,
+    CLEAR_LINK
 } from './types';
 
 const AppProvider = ({ children }) => {
@@ -24,13 +27,36 @@ const AppProvider = ({ children }) => {
         })
     }
 
+    const setFileUpload = formData => {
+        dispatch({
+            type: SET_FILE_UPLOAD,
+            payload: formData
+        })
+    }
+
+    const setLink = link => {
+        dispatch({
+            type: SET_LINK,
+            payload: link
+        })
+    }
+
+    const clearLink = () => {
+        dispatch({
+            type: CLEAR_LINK,
+        })
+    }
+
     return (
         <AppContext.Provider
             value={{
                 // AppProvider
                 ...state,
                 setFile,
-                clearFile
+                clearFile,
+                setFileUpload,
+                setLink,
+                clearLink
             }}
         >
             { children }
