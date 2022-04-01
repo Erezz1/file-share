@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import AppContext from './appContext';
+import AppContext from './AppContext';
 import { reducerApp, initialState } from './appReducer';
 import {
     CLEAR_FILE,

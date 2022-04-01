@@ -5,7 +5,7 @@ import { GiCancel } from 'react-icons/gi';
 import { updateDataFile, uploadFile } from '../client/formControl';
 
 import Spinner from './Spinner';
-import AppContext from '../context/appContext';
+import AppContext from '../context/AppContext';
 import { formatBytes } from '../helpers/formatBytes';
 
 import styles from '../styles/dropzone.module.css';

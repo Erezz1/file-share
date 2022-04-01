@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import AppContext from '../context/appContext';
+import AppContext from '../context/AppContext';
 
 import logo from '../public/assets/logo.png';
 import styles from '../styles/header.module.css';

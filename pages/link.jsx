@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { BiCopyAlt } from 'react-icons/bi';
 import { GiConfirmed } from 'react-icons/gi';
 
-import AppContext from '../context/appContext';
+import AppContext from '../context/AppContext';
 import Layout from '../layout';
 import { CLIENT_URL } from '../utilities/url';
 

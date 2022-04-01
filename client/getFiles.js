@@ -14,6 +14,8 @@ export const getLinksFiles = async () => {
 
     } catch ( error ) {
         console.log( error );
+
+        return [];
     }
 }
 

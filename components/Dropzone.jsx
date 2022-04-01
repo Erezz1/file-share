@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import { AiOutlineCloudUpload, AiOutlineCloudDownload } from 'react-icons/ai';
 
-import AppContext from '../context/appContext';
+import AppContext from '../context/AppContext';
 import FormFile from './FormFile';
 
 import styles from '../styles/dropzone.module.css';
