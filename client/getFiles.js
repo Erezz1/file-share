@@ -1,24 +1,5 @@
 import { SERVER_URL } from '../utilities/url';
 
-// Obtiene el nombre de todos los archivos en el servidor
-export const getLinksFiles = async () => {
-    try {
-        const res = await fetch(`${ SERVER_URL }/api/files`);
-        const data = await res.json();
-
-        if ( data.ok ) {
-            return data.files;
-        }
-
-        return [];
-
-    } catch ( error ) {
-        console.log( error );
-
-        return [];
-    }
-}
-
 // Obtiene los datos de un archivo en especifico
 export const getFile = async ( file ) => {
 

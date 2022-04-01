@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { AiOutlineFileText } from 'react-icons/ai';
 
+import Custom404 from '../404';
 import Layout from '../../layout';
-import { getFile, getLinksFiles } from '../../client/getFiles';
+import { getFile } from '../../client/getFiles';
 import { SERVER_URL } from '../../utilities/url';
 
 import downloadIcon from '../../public/assets/download_icon.svg';
@@ -39,6 +40,10 @@ const File = ({ file }) => {
 
     const handleDownload = () => {
         router.push('/')
+    }
+
+    if ( name === '' ) {
+        return (<Custom404 />);
     }
 
     return (
@@ -97,23 +102,8 @@ const File = ({ file }) => {
     )
 }
 
-export const getStaticPaths = async () => {
-    const links = await getLinksFiles();
-
-    const paths = links.map( link => ({
-        params: {
-            file: link.name
-        }
-    }));
-
-    return {
-        paths,
-        fallback: false
-    }
-}
-
 // Genera las props de la página del archivo
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
 
     const { file } = params;
 
