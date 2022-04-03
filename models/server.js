@@ -2,6 +2,7 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
+const cron = require('../utilities/cron-config');
 const { dbConnection } = require('../database/config');
 const { createDB } = require('../utilities/adapterDB');
 
@@ -50,6 +51,9 @@ class Server {
         this.app.use( fileUpload({
             limits: { fileSize: 100000000 }
 		}));
+
+		// Eliminar archivos temporales
+		cron();
 	}
 
 	routes() {
