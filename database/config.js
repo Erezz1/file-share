@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const dbConfig = {
     host     : process.env.DB_HOST,
@@ -9,35 +9,16 @@ const dbConfig = {
 
 const dbConnection = mysql.createConnection( dbConfig );
 
-const handleDisconnect = () => {
-    dbConnection.connect( error => {
-        if ( error ) {
-            console.log( 'Error al conectar a la base de datos: ', error );
-            setTimeout( handleDisconnect, 2000 );
-        }
-    });
-
-    dbConnection.on( 'error', error => {
-        console.log('Error al conectar a la base de datos: ', error );
-
-        if ( error.code === 'PROTOCOL_CONNECTION_LOST' ) {
-            handleDisconnect();
-        } else {
-            throw error;
-        }
-    });
-}
-
 const db = ( query ) => {
     return new Promise( ( resolve, reject ) => {
-        dbConnection.query( query, ( err, rows, fields ) => {
-            if( err ) return reject( err );
+        dbConnection.query( query, ( error, rows, fields ) => {
+            if( error ) return reject( error );
             resolve( rows );
         });
     });
 }
 
 module.exports = {
-    handleDisconnect,
+    dbConnection,
     db
 }
