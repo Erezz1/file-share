@@ -1,0 +1,23 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    color: #3370ad;
+    text-align: center;
+    margin: 2rem 1rem 1rem 1rem;
+    font-weight: bold;
+}
+
+.text {
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+    margin: 0 1rem;
+}
