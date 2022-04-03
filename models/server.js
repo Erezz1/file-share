@@ -3,7 +3,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
 const cron = require('../utilities/cron-config');
-const { dbConnection } = require('../database/config');
+const { handleDisconnect } = require('../database/config');
 const { createDB } = require('../utilities/adapterDB');
 
 class Server {
@@ -26,15 +26,12 @@ class Server {
 		this.routes();
 	}
 
+	// Conectar a base de Datos
 	async connectDB() {
-		try {
-			await dbConnection.connect();
-			await createDB();
-			console.log('Base de datos conectada');
+		await handleDisconnect();
+		await createDB();
 
-		} catch ( error ) {
-			console.error(`Error al conectar a la base de datos: ${ error }`);
-		}
+		console.log('Base de datos conectada');
 	}
 
 	middlewares() {
