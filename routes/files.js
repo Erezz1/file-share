@@ -3,7 +3,7 @@ const { check } = require('express-validator');
 
 const router = Router();
 
-const { saveFile, saveFileInDB, downloadFile, getFileData, getFiles } = require('../controllers/files');
+const { saveFile, saveFileInDB, downloadFile, getFileData, runServer } = require('../controllers/files');
 
 const { validateErrors } = require('../middlewares/validateErrors');
 const { validateFileExist } = require('../middlewares/validateFileExist');
@@ -49,10 +49,10 @@ router.get(
     getFileData
 )
 
-// Obtener todos los nombres de los archivos
+// Encender el servidor
 router.get(
     '/',
-    getFiles
+    runServer
 );
 
 module.exports = router;

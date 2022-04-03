@@ -56,17 +56,8 @@ const getAllFiles = async () => {
     `);
 }
 
-const createDB = async () => {
-    await db(`
-        CREATE TABLE IF NOT EXISTS file (
-            id INT NOT NULL AUTO_INCREMENT,
-            name VARCHAR(255) NOT NULL,
-            password VARCHAR(255) DEFAULT '',
-            downloads TINYINT DEFAULT 1,
-            original_name VARCHAR(255) NOT NULL,
-            PRIMARY KEY (id)
-        );
-    `);
+const onServer = async () => {
+    return await db(`SELECT 1 + 1 AS solution`);
 }
 
 module.exports = {
@@ -76,5 +67,5 @@ module.exports = {
     deleteFile,
     getAllFiles,
     discuntFile,
-    createDB
+    onServer
 }

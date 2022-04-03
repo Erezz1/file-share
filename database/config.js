@@ -1,24 +1,27 @@
-const mysql = require('mysql2');
+const { Sequelize } = require('sequelize');
 
 const dbConfig = {
     host     : process.env.DB_HOST,
-    user     : process.env.DB_USER,
+    username : process.env.DB_USER,
     password : process.env.DB_PASSWORD,
     database : process.env.DB_DATABASE,
+    dialect  : 'mysql',
+    logging  : false
 }
 
-const dbConnection = mysql.createConnection( dbConfig );
+const sequelize = new Sequelize( dbConfig );
 
-const db = ( query ) => {
-    return new Promise( ( resolve, reject ) => {
-        dbConnection.query( query, ( error, rows, fields ) => {
-            if( error ) return reject( error );
-            resolve( rows );
-        });
-    });
+const db = async ( query ) => {
+    try {
+        const result = await sequelize.query( query );
+        return result[0];
+
+    } catch( error ) {
+        console.log( error );
+    }
 }
 
 module.exports = {
-    dbConnection,
+    sequelize,
     db
 }

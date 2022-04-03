@@ -3,8 +3,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
 const cron = require('../utilities/cron-config');
-const { dbConnection } = require('../database/config');
-const { createDB } = require('../utilities/adapterDB');
+const { sequelize } = require('../database/config');
 
 class Server {
 	constructor() {
@@ -29,8 +28,7 @@ class Server {
 	// Conectar a base de Datos
 	async connectDB() {
 		try {
-			await dbConnection.connect();
-			await createDB();
+			await sequelize.authenticate();
 			console.log('Base de datos conectada');
 
 		} catch ( error ) {

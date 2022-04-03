@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { request, response } = require('express');
 
-const { addFile, updateFile, getFile, deleteFile, getAllFiles, discuntFile } = require('../utilities/adapterDB');
+const { addFile, updateFile, getFile, deleteFile, discuntFile, onServer } = require('../utilities/adapterDB');
 const { getExtension } = require('../utilities/getExtension');
 const { saveFileInUploads } = require('../utilities/saveFile');
 
@@ -107,23 +107,14 @@ const getFileData = async ( req = request, res = response ) => {
 }
 
 // Obtener todos los nombres de los archivos
-const getFiles = async ( req = request, res = response ) => {
+const runServer = async ( req = request, res = response ) => {
+    const results = await onServer();
 
-    try {
-        const files = await getAllFiles();
-
-        return res.json({
-            ok: true,
-            files,
-        })
-    } catch ( error ) {
-        console.log( error );
-
-        return res.status(500).json({
-            ok: false,
-            msg: 'Error al obtener los archivos',
-        });
-    }
+    res.json({
+        ok: true,
+        msg: 'Servidor encendido y conectado a la base de datos',
+        results
+    });
 }
 
 module.exports = {
@@ -131,5 +122,5 @@ module.exports = {
     saveFileInDB,
     downloadFile,
     getFileData,
-    getFiles
+    runServer
 };
